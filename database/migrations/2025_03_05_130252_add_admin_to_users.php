@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('species', function (Blueprint $table) {
-            $table->id();
-            $table->string("species");
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer( "admin" )->after( "remember_token" );
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('species');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn( 'admin' );
+        });
     }
 };

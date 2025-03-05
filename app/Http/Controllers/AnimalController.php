@@ -20,15 +20,27 @@ use App\Models\Species;
 
 use Illuminate\Support\Facades\Gate;
 
-class AnimalController extends Controller
+class AnimalController extends ResponseController
 {
     public function getAnimals(){
-        $animals = Animals::all();
-        return $this->sendResponse( AnimalResource::collection($animals), "Siker");
+        $animals = Animal::all();
+        return $this->sendResponse(AnimalResource::collection($animals), "Siker");
     }
 
     public function addAnimal(Request $request){
+        
 
+        $animals = new Animal;
+        $animals->name = $request["name"];
+        $animals->coat = $request["coat"];
+        $animals->birthdate = $request["birthdate"];
+        $animals->species_id = $request["species_id"];
+        $animals->diet_id = $request["diet_id"];
+
+        $animals->save();
+
+        return $this->sendResponse($animals, "Hozzáadva");
+        
     }
 
     public function updateAnimal(Request $request){
@@ -36,6 +48,12 @@ class AnimalController extends Controller
     }
 
     public function deleteAnimal(Request $request){
-
+        $animals = Animal::find($request["id"]);
+        if (is_null($animals)) {
+            return $this->sendError( "Animal not found", 404); 
+        }
+    
+        $animals->delete();
+        return $this->sendResponse($animals, "Törölve");
     }
 }

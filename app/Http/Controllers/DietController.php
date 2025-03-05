@@ -9,7 +9,7 @@ use App\Http\Resources\Diet as DietResource;
 use App\Http\Controllers\api\ResponseController;
 use Illuminate\Support\Facades\Gate;
 
-class DietController extends Controller
+class DietController extends ResponseController
 {
     public function getDiets(){
         $diet = Diet::all();

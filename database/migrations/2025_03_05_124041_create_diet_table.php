@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('diet', function (Blueprint $table) {
             $table->id();
             $table->string("diet");
-            $table->timestamps();
         });
     }
 
