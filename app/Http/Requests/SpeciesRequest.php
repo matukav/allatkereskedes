@@ -24,7 +24,7 @@ class SpeciesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "species"=> "required"
         ];
     }
 }

@@ -28,23 +28,39 @@ class AnimalController extends ResponseController
     }
 
     public function addAnimal(Request $request){
+
+            $animals = new Animal;
+            $animals->name = $request["name"];
+            $animals->coat = $request["coat"];
+            $animals->birthdate = $request["birthdate"];
+            $animals->species_id = $request["species_id"];
+            $animals->diet_id = $request["diet_id"]; 
         
-
-        $animals = new Animal;
-        $animals->name = $request["name"];
-        $animals->coat = $request["coat"];
-        $animals->birthdate = $request["birthdate"];
-        $animals->species_id = $request["species_id"];
-        $animals->diet_id = $request["diet_id"];
-
-        $animals->save();
-
-        return $this->sendResponse($animals, "Hozzáadva");
+            $animals->save();
         
+            return $this->sendResponse($animals, "Hozzáadva");       
     }
 
     public function updateAnimal(Request $request){
 
+        $animals = Animal::find( $request[ "id" ]);
+
+        if( is_null( $animals)) {
+
+            $this->sendError( "Adathiba", [ "Nincs" ] );
+
+        }
+
+        $animals->name = $request[ "name" ];
+        $animals->coat = $request[ "coat" ];
+        $animals->birthdate = $request[ "birthdate" ];
+        $animals->coat = $request[ "coat" ];
+        $animals->species_id = $request[ "species_id" ];
+        $medicine->diet_id = $request[ "diet_id" ];
+
+        $animals->update();
+
+        return $this->sendResponse( $animals, "Sikeres módosítás" );
     }
 
     public function deleteAnimal(Request $request){

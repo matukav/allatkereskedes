@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 class Animal extends Model
 {
     use HasFactory, Notifiable;
+
     protected $table = 'animals';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'name',
@@ -19,6 +20,7 @@ class Animal extends Model
         'species_id',
         'diet_id'
     ];
+
 
     protected $casts = [
         'birthdate'=>'date'
@@ -30,6 +32,6 @@ class Animal extends Model
     }
     
     public function diet(){
-        return $this->hasMany(Animal::class );
+        return $this->belongsTo(Diet::class );
     }
 }
