@@ -50,13 +50,12 @@ class AnimalController extends ResponseController
             $this->sendError( "Adathiba", [ "Nincs" ] );
 
         }
-
         $animals->name = $request[ "name" ];
         $animals->coat = $request[ "coat" ];
         $animals->birthdate = $request[ "birthdate" ];
         $animals->coat = $request[ "coat" ];
         $animals->species_id = $request[ "species_id" ];
-        $medicine->diet_id = $request[ "diet_id" ];
+        $animals->diet_id = $request[ "diet_id" ];
 
         $animals->update();
 
