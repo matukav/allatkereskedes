@@ -30,10 +30,8 @@ Route::delete( "/deleteani", [ AnimalController::class, "deleteAnimal" ]);
 
 Route::get( "/getdiet", [ DietController::class, "getDiets" ]);
 Route::post( "/adddiet", [ DietController::class, "addDiet" ]);
-Route::post( "/updatediet", [ DietController::class, "updateDiet" ]);
 Route::delete( "/deletediet", [ DietController::class, "deleteDiet" ]);
 
-Route::get( "/getspecies", [ SpeciesController::class, "getDiets" ]);
-Route::post( "/addspecies", [ SpeciesController::class, "addDiet" ]);
-Route::post( "/updatespecies", [ SpeciesController::class, "updateDiet" ]);
-Route::delete( "/deletespecies", [ SpeciesController::class, "deleteDiet" ]);
+Route::get( "/getspecies", [ SpeciesController::class, "getSpecies" ]);
+Route::post( "/addspecies", [ SpeciesController::class, "addSpecies" ]);
+Route::delete( "/deletespecies", [ SpeciesController::class, "deleteSpecies" ]);
