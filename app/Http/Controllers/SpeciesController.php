@@ -16,4 +16,10 @@ class SpeciesController extends ResponseController
         $species = Species::all();
         return $this->sendResponse(SpeciesResource::collection($species), "Siker");
     }
+
+    public function getDietId($speciesAni) {
+        $species = Species::where("diet", $speciesAni)->first();
+        $id = $species->id;
+        return $id;
+    }
 }

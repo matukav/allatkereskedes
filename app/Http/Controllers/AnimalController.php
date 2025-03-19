@@ -22,23 +22,20 @@ use Illuminate\Support\Facades\Gate;
 
 class AnimalController extends ResponseController
 {
-    public function getAnimals(){
-        $animals = Animal::all();
-        return $this->sendResponse(AnimalResource::collection($animals), "Siker");
+    public function addAnimal(Request $request){
+        $animal = new Animal;
+        $animal->name = $request["name"];
+        $animal->coat = $request["coat"];
+        $animal->birthdate = $request["birthdate"];
+
+        $animal->save();
+
+        return $this->sendResponse( $animal, "Sikeres hozzáadás" );
     }
 
-    public function addAnimal(Request $request){
-
-            $animals = new Animal;
-            $animals->name = $request["name"];
-            $animals->coat = $request["coat"];
-            $animals->birthdate = $request["birthdate"];
-            $animals->species_id = $request["species_id"];
-            $animals->diet_id = $request["diet_id"]; 
-        
-            $animals->save();
-        
-            return $this->sendResponse($animals, "Hozzáadva");       
+    public function getAnimals(){
+        $animals = Animal::all();
+        return $this->sendResponse( AnimalResource::collection($animals), "Siker");
     }
 
     public function updateAnimal(Request $request){
